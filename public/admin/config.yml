@@ -1,0 +1,18 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "projects"
+    label: "Dự án Thực Tế"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Tên dự án", name: "title", widget: "string"}
+      - {label: "Địa điểm", name: "place", widget: "string"}
+      - {label: "Diện tích", name: "area", widget: "string"}
+      - {label: "Ảnh đại diện", name: "cover", widget: "image"}
