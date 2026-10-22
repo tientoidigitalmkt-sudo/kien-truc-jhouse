@@ -48,51 +48,26 @@ export type Project = {
   concept: string;
 };
 
-export const projects: Project[] = [
-  {
-    slug: 'luxury-apartment', title: 'Luxury Apartment', place: 'Quận 2, TP.HCM', area: '120 m²', style: 'Modern', category: 'Căn hộ', year: '2026',
-    cover: { src: unsplash('photo-1600607687920-4e2a09cf159d'), fallback: '/images/fallback-p1.jpg' },
-    gallery: [photos.hero, photos.about, photos.detail],
-    intro: 'Một căn hộ mang nhịp sống hiện đại, nơi sự yên tĩnh được nuôi dưỡng từ chất liệu, ánh sáng và tỷ lệ.',
-    concept: 'Không gian chung được mở rộng bằng bảng màu trung tính, đường nét tối giản và điểm nhấn từ đá tự nhiên. Từng chi tiết hướng đến một trải nghiệm sống thoải mái, thanh lịch.',
-  },
-  {
-    slug: 'modern-villa', title: 'Modern Villa', place: 'Quận 7, TP.HCM', area: '350 m²', style: 'Modern Luxury', category: 'Biệt thự', year: '2025',
-    cover: { src: unsplash('photo-1600585154340-be6161a56a0c'), fallback: '/images/fallback-p2.jpg' },
-    gallery: [{ src: unsplash('photo-1600607687939-ce8a6c25118c'), fallback: '/images/fallback-p2.jpg' }, photos.material, photos.detail],
-    intro: 'Ngôn ngữ kiến trúc đương đại hòa cùng nét ấm áp của một tổ ấm nhiều thế hệ.',
-    concept: 'Các khoảng mở hướng đến sân vườn, chất liệu có chiều sâu và hệ ánh sáng nhiều lớp tạo nên một tổng thể sang trọng mà gần gũi.',
-  },
-  {
-    slug: 'penthouse-view-song', title: 'Penthouse View Sông', place: 'Thảo Điền, TP.HCM', area: '200 m²', style: 'Contemporary', category: 'Penthouse', year: '2026',
-    cover: { src: unsplash('photo-1600210492486-724fe5c67fb0'), fallback: '/images/fallback-p3.jpg' },
-    gallery: [photos.about, photos.hero, photos.material],
-    intro: 'Nâng tầm trải nghiệm sống bên khung cửa rộng mở hướng về sông.',
-    concept: 'Thiết kế kết nối phòng khách, bếp và khu ăn uống bằng trục nhìn liền mạch, ưu tiên ánh sáng tự nhiên và nội thất đặt theo công năng.',
-  },
-  {
-    slug: 'nha-pho-indochine', title: 'Nhà phố Indochine', place: 'Quận 3, TP.HCM', area: '180 m²', style: 'Indochine', category: 'Nhà phố', year: '2025',
-    cover: { src: unsplash('photo-1600566753086-00f18fb6b3ea'), fallback: '/images/fallback-p4.jpg' },
-    gallery: [photos.material, photos.detail, photos.about],
-    intro: 'Nét hoài cổ giao thoa với nhịp sống tiện nghi của gia đình trẻ.',
-    concept: 'Tinh thần Đông Dương được gợi nhắc tiết chế qua chất liệu gỗ, chất vải mềm và các mảng màu ấm; mặt bằng ưu tiên sự thông thoáng.',
-  },
-  {
-    slug: 'biet-thu-san-vuon', title: 'Biệt thự sân vườn', place: 'Đồng Nai', area: '400 m²', style: 'Modern Tropical', category: 'Biệt thự', year: '2024',
-    cover: { src: unsplash('photo-1600607688969-a5bfcd646154'), fallback: '/images/fallback-p5.jpg' },
-    gallery: [photos.process, photos.material, photos.hero],
-    intro: 'Không gian sống đón thiên nhiên và giữ lại cảm giác nghỉ dưỡng mỗi ngày.',
-    concept: 'Tận dụng ánh sáng, khoảng xanh và thông gió tự nhiên. Các vùng sinh hoạt được bố trí thoáng mở nhưng vẫn đảm bảo riêng tư.',
-  },
-  {
-    slug: 'van-phong-cao-cap', title: 'Văn phòng cao cấp', place: 'Quận 1, TP.HCM', area: '300 m²', style: 'Modern', category: 'Văn phòng', year: '2026',
-    cover: { src: unsplash('photo-1497366216548-37526070297c'), fallback: '/images/fallback-p6.jpg' },
-    gallery: [photos.office, photos.detail, photos.about],
-    intro: 'Một văn phòng chuyên nghiệp được tổ chức quanh trải nghiệm con người.',
-    concept: 'Tạo cân bằng giữa khu làm việc tập trung, không gian cộng tác và các khoảng nghỉ; ánh sáng được bố trí theo từng kịch bản sử dụng.',
-  },
-];
+// Tự động quét toàn bộ bài viết CMS tạo ra
+const cmsData = import.meta.glob('../content/projects/*.json', { eager: true });
 
+// Chuyển đổi dữ liệu đưa ra web
+export const projects: any[] = Object.values(cmsData).map((file: any) => {
+  const data = file.default || file;
+  return {
+    slug: data.title ? data.title.toLowerCase().replace(/ /g, '-') : 'du-an-thuc-te',
+    title: data.title || 'Dự án mới',
+    place: data.place || 'Đang cập nhật',
+    area: data.area || '',
+    style: 'Hiện đại',
+    category: 'Thực tế',
+    year: '2026',
+    cover: { src: data.cover || '/images/fallback-p1.jpg', fallback: data.cover || '/images/fallback-p1.jpg' },
+    gallery: [],
+    intro: 'Dự án thực tế của Jhouse tại Bắc Ninh.',
+    concept: ''
+  };
+});
 export type Service = { slug: string; title: string; short: string; eyebrow: string; photo: Photo; benefits: string[]; introduction: string };
 export const services: Service[] = [
   {
