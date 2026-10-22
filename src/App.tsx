@@ -101,7 +101,7 @@ function CTA({ go, title = 'Bạn đã có ý tưởng cho không gian của mì
 function Home({ go }: { go: Navigate }) {
   const [heroNumber, setHeroNumber] = useState(0);
   const heros = [
-    { image: photos.hero, heading: <>Thiết kế không gian<br/>sống mang dấu ấn<br/><em>riêng của bạn</em></>, sub: 'Kiến tạo nội thất tinh tế từ ý tưởng đến hoàn thiện cho những không gian đáng sống.' },
+    { image: photos.hero, heading: <>Thiết kế không gian sống<br/>Mang dấu ấn<br/><em>riêng của bạn</em></>, sub: 'Kiến tạo nội thất tinh tế từ ý tưởng đến hoàn thiện cho những không gian đáng sống.' },
     { image: photos.detail, heading: <>Tinh tế trong từng<br/>đường nét, trọn vẹn<br/><em>trong cảm xúc</em></>, sub: 'Mỗi chi tiết đều được lựa chọn để kể một câu chuyện rất riêng về bạn.' },
     { image: photos.about, heading: <>Một nơi để trở về.<br/>Một không gian để<br/><em>thuộc về.</em></>, sub: 'Kết nối vẻ đẹp và công năng trong một tổng thể hài hòa, giàu cảm hứng.' },
   ];
