@@ -11,6 +11,8 @@ collections:
     folder: "src/content/projects"
     create: true
     slug: "{{slug}}"
+    extension: "json"
+    format: "json"
     fields:
       - {label: "Tên dự án", name: "title", widget: "string"}
       - {label: "Địa điểm", name: "place", widget: "string"}
