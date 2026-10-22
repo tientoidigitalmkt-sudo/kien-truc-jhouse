@@ -1,0 +1,28 @@
+KIEN TRUC JHOUSE - SUA LOI CHROME KHONG TRUY CAP DUOC LOCALHOST:5173
+=============================================================
+
+Chrome hien ERR_CONNECTION_REFUSED nghia la chua co may chu web lang nghe tren cong 5173.
+Chrome khong tu tao may chu khi ban nhap localhost.
+
+CACH CHAY:
+1. Giai nen file ZIP vao thu muc tren Windows (vi du Desktop\Kien-Truc-Jhouse).
+2. Dam bao da cai Node.js LTS. KHONG can cai Python/Visual Studio Build Tools.
+3. Nhan dup file CHAY-WEBSITE-REACT.bat trong thu muc Kien-Truc-Jhouse.
+4. LAN DAU, doi den khi npm install xong va dong lenh hien "VITE ... ready".
+5. GIU NGUYEN cua so den. Mo Chrome va truy cap: http://127.0.0.1:5173/
+6. Khi muon dong website, quay lai cua so den va bam Ctrl+C.
+
+NEU KHONG CHAY:
+- Chup lai phan cuoi cua so den. Loi that su nam tai day, khong phai tren Chrome.
+- Neu khong tim thay 'node' hay 'npm', khoi dong lai Windows sau khi cai Node.js.
+- Neu loi 'npm install', kiem tra internet / proxy / firewall.
+- Neu cong 5173 dang su dung, dong ung dung chiem cong roi khoi dong lai.
+
+DE KIEM TRA THU CONG TRONG THU MUC GOC CUA WEBSITE:
+  node -v
+  npm -v
+  npm install
+  npm run dev
+
+Luu y: khong mo source files trong src/ bang trinh duyet; chung can Vite chay.
+Chi muon xem nhanh ma khong can Node.js: mo XEM_TRUOC_OFFLINE.html.

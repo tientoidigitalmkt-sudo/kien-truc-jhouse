@@ -1,0 +1,28 @@
+KIEN TRUC JHOUSE - CACH XEM WEBSITE REACT DAY DU
+
+1. Giai nen file ZIP.
+2. Cai Node.js phien ban LTS (20+) neu chua co: https://nodejs.org/
+3. Nhan dup file CHAY-WEBSITE-REACT.bat trong thu muc Kien-Truc-Jhouse.
+4. Lan dau, may se cai thu vien tu internet qua lenh npm install.
+5. Chrome se mo http://localhost:5173 - day la website React day du, KHONG phai demo HTML tinh.
+6. De tat website, dong cua so terminal (hoac Ctrl+C).
+
+DIEU HUONG CO SAN:
+Trang chu, Gioi thieu, Dich vu, Du an, Quy trinh, Blog, Lien he.
+Cac trang chi tiet dich vu, du an, blog co the nhan link de xem.
+
+NOI DUNG MA NGUON:
+src/App.tsx - cac trang va dieu huong.
+src/data/premium.ts - thuong hieu, lien he, du an, dich vu, bai viet.
+src/styles.css - giao dien va responsive.
+src/main.tsx - khoi tao React.
+public/images/ - anh du phong.
+
+CHAY THU CONG:
+Mo terminal tai thu muc Kien-Truc-Jhouse, chay:
+  npm install
+  npm run dev
+Sau do mo: http://localhost:5173
+
+LUU Y: Anh/danh muc du an, thong ke hien la minh hoa.
+Form lien he dung mailto, chua tu dong gui du lieu den may chu.
