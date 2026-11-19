@@ -46,26 +46,43 @@ export type Project = {
   gallery: Photo[];
   intro: string;
   concept: string;
+  description: string;
 };
 
+// Slug không dấu, dùng cho URL: "Biệt thự hiện đại Bắc Ninh" -> "biet-thu-hien-dai-bac-ninh"
+// Cũng dùng để nhận diện link cũ có dấu: slugify("biệt-thự-hiện-đại-bắc-ninh") ra cùng 1 kết quả.
+export const slugify = (value: string) =>
+  value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 // Tự động quét toàn bộ bài viết CMS tạo ra
 const cmsData = import.meta.glob('../content/projects/*.json', { eager: true });
 
 // Chuyển đổi dữ liệu đưa ra web
 export const projects: any[] = Object.values(cmsData).map((file: any) => {
   const data = file.default || file;
+  const galleryItems: any[] = Array.isArray(data.gallery) ? data.gallery : [];
   return {
-    slug: data.title ? data.title.toLowerCase().replace(/ /g, '-') : 'du-an-thuc-te',
+    slug: data.title ? slugify(data.title) : 'du-an-thuc-te',
     title: data.title || 'Dự án mới',
     place: data.place || 'Đang cập nhật',
     area: data.area || '',
-    style: 'Hiện đại',
+    style: data.style || 'Hiện đại',
     category: 'Thực tế',
-    year: '2026',
+    year: data.year || '2026',
     cover: { src: data.cover || '/images/fallback-p1.jpg', fallback: data.cover || '/images/fallback-p1.jpg' },
-    gallery: [],
-    intro: 'Dự án thực tế của Jhouse tại Bắc Ninh.',
-    concept: ''
+    gallery: galleryItems.map((item: any) => {
+      const src = typeof item === 'string' ? item : item?.image || item?.src || '';
+      return { src, fallback: src };
+    }).filter((p: Photo) => p.src),
+    intro: data.intro || 'Dự án thực tế của Jhouse tại Bắc Ninh.',
+    concept: data.concept || '',
+    description: data.description || ''
   };
 });
 export type Service = { slug: string; title: string; short: string; eyebrow: string; photo: Photo; benefits: string[]; introduction: string };
