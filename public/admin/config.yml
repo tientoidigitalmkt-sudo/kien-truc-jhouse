@@ -1,10 +1,10 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
 backend:
-  name: git-gateway
+  name: github
+  repo: tientoidigitalmkt-sudo/kien-truc-jhouse
   branch: main
-
 media_folder: "public/images"
 public_folder: "/images"
-
 collections:
   - name: "projects"
     label: "Dự án Thực Tế"
@@ -18,3 +18,7 @@ collections:
       - {label: "Địa điểm", name: "place", widget: "string"}
       - {label: "Diện tích", name: "area", widget: "string"}
       - {label: "Ảnh đại diện", name: "cover", widget: "image"}
+      - {label: "Mô tả ngắn (hiện ở đầu trang chi tiết, dùng làm mô tả SEO)", name: "intro", widget: "text", required: false}
+      - {label: "Ý tưởng thiết kế", name: "concept", widget: "markdown", required: false}
+      - {label: "Nội dung chi tiết (mô tả dự án, vật liệu, hạng mục — viết 300-500 từ)", name: "description", widget: "markdown", required: false}
+      - {label: "Thư viện ảnh", name: "gallery", widget: "list", required: false, fields: [{label: "Ảnh", name: "image", widget: "image"}]}
